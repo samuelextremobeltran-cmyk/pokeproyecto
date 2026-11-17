@@ -1,54 +1,51 @@
-# Primera ciudad — barrios y recorrido 0.2
+# Primera ciudad — plano de Sam, versión 0.3
 
-Revisión solicitada por Sam el 17 de noviembre de 2026, tras probar la versión 0.1. El mapa conserva el nombre provisional técnico `PrototypeCity_Frlg`. No fija nombres de ciudad o región ni añade historia. Leaf continúa como personaje temporal; los edificios no tienen interacciones ni interiores.
+Reorganización solicitada el 17 de noviembre de 2026 a partir del croquis `project/references/city_layout_sam_20261117.png`. Esta distribución sustituye la organización por cuadrantes de 0.2. La ciudad y región siguen sin nombre definitivo. Leaf continúa como personaje temporal y los edificios siguen sin interacciones ni interiores.
 
-## Distribución aprobada por el encargo
+## Distribución según el dibujo
 
-Mapa de 106 × 96 casillas, dividido en barrios con calles de losa sobre césped, manzanas alineadas y zonas verdes, siguiendo la composición clásica de Rojo Fuego.
+Mapa de 118 × 92 casillas, con proporción cercana a la del plano de referencia.
 
-| Sector | Contenido |
+| Ubicación | Contenido |
 | --- | --- |
-| Noroeste residencial | Tres edificios de departamentos, siete casas, lago y parque de barrio |
-| Noreste comercial | Hotel, centro comercial, museo, casino, Centro Pokémon, tienda azul y comisaría |
-| Suroeste de negocios | Cinco edificios con una fuente en la plaza que rodean |
-| Centro | Parque con segunda fuente, flores y senderos |
-| Sur | Gimnasio rodeado de árboles, con un paseo de losa conectado al norte |
+| Noroeste | E1 a la izquierda, E2 arriba del parque, E3 a la derecha, E5 abajo a la izquierda y E4 abajo a la derecha |
+| Parque entre los cinco edificios | Primera fuente y flores |
+| Franja norte comercial | Hotel y casino |
+| Debajo del hotel y casino | Centro Pokémon a la izquierda, centro comercial en medio y tienda azul a la derecha |
+| Debajo de ese bloque | Museo horizontal |
+| Cruce central, al oeste de la avenida | Comisaría, entre el lago y el bloque comercial |
+| Oeste central | Lago dentro de su parque |
+| Suroeste | Gimnasio dentro de un arbolado, con sendero en L hacia la avenida central |
+| Este, debajo del museo | Parque grande con la segunda fuente y flores |
+| Sureste | Cuatro casas en la fila superior y tres en la inferior; parque residencial entre ambas, con departamentos a los lados |
 
-Total: 23 edificios y tres hitos (dos fuentes y un lago). Los caminos de losa conectan los accesos de todos los edificios. Hay césped entre las calles y las construcciones; el suelo no se rellena completamente con pavimento.
+Se mantienen las cantidades del encargo anterior: siete casas y tres departamentos, además de los cinco edificios de negocios y los servicios. El croquis se interpreta como referencia de posiciones; el tercer departamento queda junto al bloque oriental del parque residencial. Esta interpretación se comunicó antes de trabajar. Total: 23 edificios, dos fuentes y un lago.
 
-## Correcciones respecto a 0.1
+Las vías del plano se representan con losa de Rojo Fuego. Una avenida vertical separa la mitad occidental de la zona comercial y residencial. Todos los accesos están conectados mediante pavimento, sin necesidad de atravesar césped. Las puertas permanecen bloqueadas.
 
-- Coníferas completas: filas 14/15, 30/31 y 38/39 de FRLG. Se elimina la combinación incorrecta que dejaba dos copas superpuestas.
-- Se eliminan los falsos bancos hechos con fragmentos de fachada.
-- Casas completas con tejado, fachada y puerta; departamentos y oficinas con entrada visible.
-- El lago tiene un borde cerrado y las flores se colocan en césped, sin cortar los senderos.
-- Se combinan únicamente las piezas utilizadas de Celadon, Pallet, Pewter y Saffron. Se remapean índices de tiles y paletas, conservando las capas y volteos de cada metatile.
-- Museo y viviendas adaptan algunos colores a paletas compartidas para respetar el presupuesto de paletas de GBA. No se sustituyen los recursos originales.
-- El tileset propio usa sus propias paletas; ya no apunta a las de Saffron pese a contener piezas de otras ciudades.
+## Recursos y límites
 
-## Implementación y regeneración
+Se conservan los recursos corregidos en 0.2: coníferas completas, casas y puertas, bordes de lago cerrados y paletas propias del tileset combinado. E1 y E3 tienen más altura mediante repetición de filas completas de ventanas. Los cinco edificios no tienen nombres narrativos; E1–E5 son identificadores del plano.
 
-`project/scripts/generate_first_city.py` genera el plano, los bloques y los recursos gráficos de `data/tilesets/secondary/prototype_city_frlg/`. Requiere Pillow solo para regenerar; los archivos generados están incluidos y compilar no necesita ejecutar el generador.
+`project/scripts/generate_first_city.py` regenera mapa y recursos, y valida cantidades, solapamientos, colisiones, acceso por losa, límites gráficos y perímetro. Requiere Pillow solo para regenerar; los archivos generados están incluidos.
 
-El generador comprueba los 23 edificios exactos, que no se solapen, las colisiones de las fachadas, los límites gráficos de GBA, el perímetro cerrado y que todos los accesos tengan una conexión continua de losa desde el punto de inicio. `first_city.json` describe el plano y sus recursos.
+El búfer de mapa sigue siendo de 14,336 entradas. El plano de 118×92, incluyendo el margen de cámara de 133×106, necesita 14,098 entradas. No se amplió respecto a 0.2. El enlace verifica el uso de memoria de GBA.
 
-Se amplía `MAX_MAP_DATA_SIZE` de 10,240 a 14,336 entradas para que el mapa de 106×96 y su borde de cámara (121×110) quepan en el búfer. El enlace final comprueba que la memoria EWRAM e IWRAM sigan dentro de los límites. No se aumenta el tamaño de ROM más allá de los 32 MiB del formato existente.
+## Probar la ROM
 
-## Jugar
+1. Descomprime `Pokeproyecto_Ciudad_0.3.zip`.
+2. Abre `Pokeproyecto_Ciudad_0.3.gba` en tu emulador de GBA.
+3. Pasa la presentación y selecciona `NEW GAME`.
+4. Leaf aparece en el cruce de la avenida central; usa la cruceta para caminar y B para correr.
 
-1. Descomprime `Pokeproyecto_Ciudad_0.2.zip`.
-2. Abre `Pokeproyecto_Ciudad_0.2.gba` con tu emulador de GBA.
-3. Pasa la presentación y elige `NEW GAME`. Leaf aparece en el cruce central.
-4. Usa la cruceta para caminar y B para correr, según las teclas configuradas en tu emulador.
+No cargues estados rápidos ni una partida anterior: han cambiado las posiciones de los edificios y el punto de inicio. No hace falta usar Godot ni herramientas de compilación para jugar el archivo entregado.
 
-Empieza una partida nueva. No cargues un estado rápido ni un guardado de la versión 0.1: cambiaron el tamaño del mapa, el plano y las coordenadas de inicio. No hace falta compilar ni usar Godot para jugar el archivo entregado.
-
-No hay NPC, encuentros, conexiones a la región original, servicios ni interiores. Las puertas son decorativas y permanecen bloqueadas. No hay Pokémon en el equipo inicial.
+La prueba es de recorrido: no hay NPC, encuentros, interiores ni servicios interactivos. No hay Pokémon en el equipo inicial.
 
 ## Verificación
 
-Los resultados y el SHA-256 de la ROM de esta entrega se registran en `first_city_verification.json`. La prueba en libmgba recorre los 23 accesos por losa, intenta entrar y pulsa A frente a cada fachada; comprueba además las dos fuentes y el lago. Las capturas se revisan visualmente para comprobar árboles, casas, museo, gimnasio y parque. No se atribuyen pruebas de combate o de guardado a esta demo de recorrido.
+`first_city_verification.json` registra el hash de la ROM y la prueba con libmgba 0.10.5: inicio con Leaf, acceso a los 23 edificios por losa, colisiones frente a cada fachada, pulsación de A sin activar eventos y visita de las dos fuentes y del lago. El mapa completo se compara visualmente con el croquis. No se atribuyen pruebas de combate o de guardado a esta versión.
 
 ## Créditos
 
-Motor RHH pokeemerald-expansion 1.17.2; descompilaciones de pret y colaboradores de `CREDITS.md`. Recursos gráficos FRLG incluidos en la base, recombinados para el mapa de Sam. No se utilizaron imágenes de las capturas del usuario como texturas del juego.
+Distribución: croquis de Sam. Motor: RHH pokeemerald-expansion 1.17.2, descompilaciones de pret y contribuyentes de `CREDITS.md`. Arquitectura y Leaf: recursos FRLG de la base. El croquis es una referencia de diseño y no se usa como textura del juego.

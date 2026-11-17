@@ -1,288 +1,293 @@
 {
   "prototype": true,
-  "version": "0.2",
+  "version": "0.3",
   "name": "Ciudad de prueba; nombre pendiente",
-  "width": 106,
-  "height": 96,
+  "width": 118,
+  "height": 92,
   "spawn": [
-    54,
-    48
+    65,
+    45
   ],
   "buildings": [
     {
-      "kind": "departamentos",
-      "zone": "residencial",
-      "x": 9,
-      "y": 5,
+      "kind": "oficina",
+      "zone": "negocios",
+      "x": 5,
+      "y": 7,
+      "width": 5,
+      "height": 12,
+      "approach": [
+        7,
+        19
+      ],
+      "reference": "E1"
+    },
+    {
+      "kind": "oficina",
+      "zone": "negocios",
+      "x": 18,
+      "y": 3,
       "width": 5,
       "height": 8,
-      "approach": [
-        11,
-        13
-      ]
-    },
-    {
-      "kind": "departamentos",
-      "zone": "residencial",
-      "x": 24,
-      "y": 5,
-      "width": 5,
-      "height": 8,
-      "approach": [
-        26,
-        13
-      ]
-    },
-    {
-      "kind": "departamentos",
-      "zone": "residencial",
-      "x": 39,
-      "y": 5,
-      "width": 5,
-      "height": 8,
-      "approach": [
-        41,
-        13
-      ]
-    },
-    {
-      "kind": "casa",
-      "zone": "residencial",
-      "x": 8,
-      "y": 18,
-      "width": 5,
-      "height": 5,
-      "approach": [
-        9,
-        23
-      ]
-    },
-    {
-      "kind": "casa",
-      "zone": "residencial",
-      "x": 19,
-      "y": 18,
-      "width": 5,
-      "height": 5,
       "approach": [
         20,
-        23
-      ]
+        11
+      ],
+      "reference": "E2"
     },
     {
-      "kind": "casa",
-      "zone": "residencial",
-      "x": 30,
-      "y": 18,
+      "kind": "oficina",
+      "zone": "negocios",
+      "x": 31,
+      "y": 7,
       "width": 5,
-      "height": 5,
+      "height": 12,
       "approach": [
-        31,
-        23
-      ]
+        33,
+        19
+      ],
+      "reference": "E3"
     },
     {
-      "kind": "casa",
-      "zone": "residencial",
-      "x": 41,
-      "y": 18,
+      "kind": "oficina",
+      "zone": "negocios",
+      "x": 11,
+      "y": 24,
       "width": 5,
-      "height": 5,
+      "height": 8,
       "approach": [
-        42,
-        23
-      ]
+        13,
+        32
+      ],
+      "reference": "E5"
     },
     {
-      "kind": "casa",
-      "zone": "residencial",
-      "x": 8,
-      "y": 28,
+      "kind": "oficina",
+      "zone": "negocios",
+      "x": 27,
+      "y": 24,
       "width": 5,
-      "height": 5,
+      "height": 8,
       "approach": [
-        9,
-        33
-      ]
-    },
-    {
-      "kind": "casa",
-      "zone": "residencial",
-      "x": 19,
-      "y": 28,
-      "width": 5,
-      "height": 5,
-      "approach": [
-        20,
-        33
-      ]
-    },
-    {
-      "kind": "casa",
-      "zone": "residencial",
-      "x": 30,
-      "y": 28,
-      "width": 5,
-      "height": 5,
-      "approach": [
-        31,
-        33
-      ]
-    },
-    {
-      "kind": "centro_comercial",
-      "zone": "comercial",
-      "x": 60,
-      "y": 6,
-      "width": 9,
-      "height": 10,
-      "approach": [
-        62,
-        16
-      ]
+        29,
+        32
+      ],
+      "reference": "E4"
     },
     {
       "kind": "hotel",
       "zone": "comercial",
-      "x": 74,
-      "y": 6,
+      "x": 54,
+      "y": 4,
       "width": 7,
       "height": 8,
       "approach": [
-        77,
-        14
-      ]
-    },
-    {
-      "kind": "museo",
-      "zone": "comercial",
-      "x": 86,
-      "y": 6,
-      "width": 16,
-      "height": 8,
-      "approach": [
-        91,
-        14
+        57,
+        12
       ]
     },
     {
       "kind": "casino",
       "zone": "comercial",
-      "x": 84,
-      "y": 25,
+      "x": 85,
+      "y": 4,
       "width": 10,
       "height": 5,
       "approach": [
-        87,
-        30
+        88,
+        9
       ]
     },
     {
       "kind": "centro_pokemon",
       "zone": "comercial",
-      "x": 61,
-      "y": 25,
+      "x": 51,
+      "y": 22,
       "width": 5,
       "height": 5,
       "approach": [
-        63,
-        30
+        53,
+        27
+      ]
+    },
+    {
+      "kind": "centro_comercial",
+      "zone": "comercial",
+      "x": 68,
+      "y": 19,
+      "width": 9,
+      "height": 10,
+      "approach": [
+        70,
+        29
       ]
     },
     {
       "kind": "tienda_azul",
       "zone": "comercial",
-      "x": 71,
-      "y": 26,
+      "x": 91,
+      "y": 22,
       "width": 4,
       "height": 4,
       "approach": [
-        73,
-        30
+        93,
+        26
+      ]
+    },
+    {
+      "kind": "museo",
+      "zone": "comercial",
+      "x": 67,
+      "y": 34,
+      "width": 16,
+      "height": 8,
+      "approach": [
+        72,
+        42
       ]
     },
     {
       "kind": "policia",
-      "zone": "comercial",
-      "x": 93,
-      "y": 37,
+      "zone": "centro",
+      "x": 46,
+      "y": 33,
       "width": 5,
-      "height": 4,
+      "height": 7,
+      "approach": [
+        48,
+        40
+      ]
+    },
+    {
+      "kind": "casa",
+      "zone": "residencial",
+      "x": 73,
+      "y": 65,
+      "width": 5,
+      "height": 5,
+      "approach": [
+        74,
+        70
+      ]
+    },
+    {
+      "kind": "casa",
+      "zone": "residencial",
+      "x": 83,
+      "y": 65,
+      "width": 5,
+      "height": 5,
+      "approach": [
+        84,
+        70
+      ]
+    },
+    {
+      "kind": "casa",
+      "zone": "residencial",
+      "x": 93,
+      "y": 65,
+      "width": 5,
+      "height": 5,
+      "approach": [
+        94,
+        70
+      ]
+    },
+    {
+      "kind": "casa",
+      "zone": "residencial",
+      "x": 103,
+      "y": 65,
+      "width": 5,
+      "height": 5,
+      "approach": [
+        104,
+        70
+      ]
+    },
+    {
+      "kind": "casa",
+      "zone": "residencial",
+      "x": 78,
+      "y": 82,
+      "width": 5,
+      "height": 5,
+      "approach": [
+        79,
+        87
+      ]
+    },
+    {
+      "kind": "casa",
+      "zone": "residencial",
+      "x": 86,
+      "y": 82,
+      "width": 5,
+      "height": 5,
+      "approach": [
+        87,
+        87
+      ]
+    },
+    {
+      "kind": "casa",
+      "zone": "residencial",
+      "x": 94,
+      "y": 82,
+      "width": 5,
+      "height": 5,
       "approach": [
         95,
-        41
+        87
       ]
     },
     {
-      "kind": "oficina",
-      "zone": "negocios",
-      "x": 8,
-      "y": 55,
+      "kind": "departamentos",
+      "zone": "residencial",
+      "x": 71,
+      "y": 74,
       "width": 5,
       "height": 8,
       "approach": [
-        10,
-        63
+        73,
+        82
       ]
     },
     {
-      "kind": "oficina",
-      "zone": "negocios",
-      "x": 33,
-      "y": 55,
+      "kind": "departamentos",
+      "zone": "residencial",
+      "x": 100,
+      "y": 74,
       "width": 5,
       "height": 8,
       "approach": [
-        35,
-        63
+        102,
+        82
       ]
     },
     {
-      "kind": "oficina",
-      "zone": "negocios",
-      "x": 6,
-      "y": 66,
+      "kind": "departamentos",
+      "zone": "residencial",
+      "x": 108,
+      "y": 74,
       "width": 5,
       "height": 8,
       "approach": [
-        8,
-        74
-      ]
-    },
-    {
-      "kind": "oficina",
-      "zone": "negocios",
-      "x": 8,
-      "y": 77,
-      "width": 5,
-      "height": 8,
-      "approach": [
-        10,
-        85
-      ]
-    },
-    {
-      "kind": "oficina",
-      "zone": "negocios",
-      "x": 33,
-      "y": 77,
-      "width": 5,
-      "height": 8,
-      "approach": [
-        35,
-        85
+        110,
+        82
       ]
     },
     {
       "kind": "gimnasio",
-      "zone": "sur",
-      "x": 51,
-      "y": 85,
+      "zone": "suroeste",
+      "x": 13,
+      "y": 72,
       "width": 7,
       "height": 5,
       "approach": [
-        54,
-        90
+        16,
+        77
       ]
     }
   ],
@@ -290,89 +295,102 @@
     {
       "kind": "fuente_negocios",
       "rect": [
-        24,
-        68,
+        19,
+        16,
         3,
         4
       ],
       "approach": [
-        25,
-        72
+        20,
+        20
       ]
     },
     {
-      "kind": "fuente_central",
+      "kind": "lago_oeste",
       "rect": [
-        62,
-        59,
-        3,
-        4
-      ],
-      "approach": [
-        63,
-        65
-      ]
-    },
-    {
-      "kind": "lago_residencial",
-      "rect": [
-        36,
-        28,
-        11,
-        7
-      ],
-      "approach": [
+        7,
         40,
-        36
+        27,
+        12
+      ],
+      "approach": [
+        20,
+        53
+      ]
+    },
+    {
+      "kind": "fuente_parque_este",
+      "rect": [
+        88,
+        53,
+        3,
+        4
+      ],
+      "approach": [
+        89,
+        58
       ]
     }
   ],
   "districts": {
-    "residencial": [
-      5,
-      5,
-      44,
-      40
+    "negocios": [
+      4,
+      3,
+      36,
+      33
     ],
     "comercial": [
-      59,
-      5,
-      43,
+      49,
+      3,
+      64,
       39
     ],
-    "negocios": [
-      5,
-      54,
-      40,
-      31
+    "policia": [
+      45,
+      32,
+      9,
+      10
     ],
-    "parque_central": [
-      48,
-      53,
-      31,
+    "lago_parque": [
+      4,
+      38,
+      38,
       22
     ],
-    "gimnasio_sur": [
+    "gimnasio_suroeste": [
+      4,
+      62,
+      54,
+      26
+    ],
+    "parque_este": [
+      74,
+      49,
+      39,
+      12
+    ],
+    "residencial": [
+      70,
+      65,
       44,
-      78,
-      32,
-      15
+      23
     ]
   },
   "promenade": [
-    52,
-    3,
+    64,
+    13,
     4,
-    90
+    76
   ],
+  "layout_reference": "Sam, plano dibujado adjunto del 17 de noviembre de 2026",
   "paving_metatiles": [
     449
   ],
-  "connected_paving_tiles": 2987,
+  "connected_paving_tiles": 2830,
   "resources": {
     "secondary_tiles": 248,
     "secondary_metatiles": 230,
     "secondary_palettes": 5
   },
-  "walkable_connected_tiles": 6884
+  "walkable_connected_tiles": 7618
 }

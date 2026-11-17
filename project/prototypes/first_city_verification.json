@@ -1,15 +1,16 @@
 {
   "date": "2026-11-17",
-  "version": "0.2",
+  "version": "0.3",
+  "layout_reference": "project/references/city_layout_sam_20261117.png",
   "emulator": "mGBA 0.10.5 (headless libmgba)",
-  "frames": 27247,
+  "frames": 30871,
   "map_size": [
-    106,
-    96
+    118,
+    92
   ],
   "spawn": [
-    54,
-    48
+    65,
+    45
   ],
   "leaf_gender": 1,
   "map_group": 75,
@@ -20,25 +21,28 @@
   "landmarks_verified": 3,
   "emulator_position_checkpoints": 49,
   "checkpoint_failures": 0,
-  "connected_walkable_tiles": 6884,
-  "connected_paving_tiles": 2987,
+  "connected_walkable_tiles": 7618,
+  "connected_paving_tiles": 2830,
   "boundary_enclosed": true,
   "events_and_warps": 0,
   "ewram_bytes": 234888,
   "iwram_bytes": 28648,
+  "map_buffer_required_entries": 14098,
+  "map_buffer_capacity_entries": 14336,
   "rom_bytes": 33554432,
-  "rom_sha256": "4535ed24a888b8ae6918b84e2938ebb53ece70e8d1c125bf381a18e3cc0138ba",
+  "rom_sha256": "5d778ba0b54346267a0241de5a2ed9037666311e710ada0cb23a765d922421f3",
   "tile_resources": {
     "secondary_tiles": 248,
     "secondary_metatiles": 230,
     "secondary_palettes": 5
   },
   "visual_review": [
-    "complete conifers",
-    "complete houses with doors",
-    "museum facade",
-    "gym and tree-lined southern path",
-    "central fountain and flowers",
-    "residential lake"
+    "E1/E2/E3/E5/E4 surrounding northwest park",
+    "hotel and casino above the commercial block",
+    "Pokemon Center left of mall and shop on the right",
+    "museum below mall",
+    "police station at central crossing",
+    "western lake park above wooded southwest gym",
+    "eastern park above southeast housing"
   ]
 }

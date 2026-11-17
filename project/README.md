@@ -14,12 +14,12 @@ El documento creativo organiza la transferencia; no redefine su canon. El texto 
 
 ## Base técnica
 
-Repositorio propio: https://github.com/samuelextremobeltran-cmyk/pokeproyecto . Rama actual de la ciudad: `project/city-districts`, fijada en la base estable que ya compiló. La rama `master` conserva la copia upstream y puede tener cambios posteriores al release probado.
+Repositorio propio: https://github.com/samuelextremobeltran-cmyk/pokeproyecto . Rama actual de la ciudad: `project/city-sketch`, fijada en la base estable que ya compiló. La rama `master` conserva la copia upstream y puede tener cambios posteriores al release probado.
 
 Para descargar la rama del proyecto:
 
 ```bash
-git clone --branch project/city-districts https://github.com/samuelextremobeltran-cmyk/pokeproyecto.git
+git clone --branch project/city-sketch https://github.com/samuelextremobeltran-cmyk/pokeproyecto.git
 cd pokeproyecto
 bash project/scripts/build.sh
 ```
@@ -40,4 +40,4 @@ Se conserva `CREDITS.md` del proyecto original. `pret/pokefirered` es una refere
 5. Campaña completa, legendario, hermanas y campeona.
 6. Equilibrio, correcciones y parche de distribución.
 
-Primer mapa original de prueba: `PrototypeCity_Frlg`. La versión 0.2 tiene barrios residencial, comercial y de negocios, parque central y gimnasio al sur. Mantiene los edificios sin interacciones y a Leaf temporalmente como personaje jugable. Véase `prototypes/FIRST_CITY.md`. No hay personajes originales definitivos ni historia implementada todavía.
+Primer mapa original de prueba: `PrototypeCity_Frlg`. La versión 0.3 sigue el croquis de Sam: negocios al noroeste, comercio al noreste, lago al oeste, gimnasio al suroeste y viviendas al sureste. Mantiene los edificios sin interacciones y a Leaf temporalmente como personaje jugable. Véase `prototypes/FIRST_CITY.md`. No hay personajes originales definitivos ni historia implementada todavía.

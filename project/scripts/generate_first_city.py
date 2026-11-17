@@ -7,7 +7,8 @@ from collections import Counter, deque
 import json, struct
 from PIL import Image, ImageDraw, ImageFont
 ROOT = Path(__file__).resolve().parents[2]
-W, H = 106, 96
+W, H = 118, 92
+assert (W+15)*(H+14) <= 14336, "City exceeds map buffer including camera margin"
 PRIMARY = ROOT / 'data/tilesets/primary/general_frlg'
 OUT = ROOT / 'data/tilesets/secondary/prototype_city_frlg'
 
@@ -129,22 +130,31 @@ STONE=patch('PewterCity','pewter_city_frlg',10,9,2,2)
 def pave(x,y,w,h):
     for yy in range(y,y+h):
         for xx in range(x,x+w):grid[yy][xx]=c(STONE[yy%2][xx%2])
-manifest={'prototype':True,'version':'0.2','name':'Ciudad de prueba; nombre pendiente','width':W,'height':H,'spawn':[54,48],'buildings':[],'landmarks':[],'districts':{'residencial':[5,5,44,40],'comercial':[59,5,43,39],'negocios':[5,54,40,31],'parque_central':[48,53,31,22],'gimnasio_sur':[44,78,32,15]},'promenade':[52,3,4,90]}
-# Consistent perimeter, no overlapping or half-tree pieces.
+manifest={'prototype':True,'version':'0.3','name':'Ciudad de prueba; nombre pendiente','width':W,'height':H,'spawn':[65,45],'buildings':[],'landmarks':[],'districts':{'negocios':[4,3,36,33],'comercial':[49,3,64,39],'policia':[45,32,9,10],'lago_parque':[4,38,38,22],'gimnasio_suroeste':[4,62,54,26],'parque_este':[74,49,39,12],'residencial':[70,65,44,23]},'promenade':[64,13,4,76],'layout_reference':'Sam, plano dibujado adjunto del 17 de noviembre de 2026'}
+# Perimeter, kept separate from the paths so no half-trees are erased.
 fill(0,0,W,3,1,True);fill(0,H-3,W,3,1,True);fill(0,0,4,H,1,True);fill(W-4,0,4,H,1,True)
 for x in range(0,W-1,2):tree(x,0);tree(x,H-3)
 for y in range(3,H-3,3):tree(0,y);tree(2,y);tree(W-4,y);tree(W-2,y)
-# Main avenues: narrow paths through lawns, not a completely paved background.
-pave(4,46,W-8,4);pave(52,3,4,87)
-pave(47,49,4,40)
-# Residential roads and short lanes linking each front door.
-pave(6,14,43,3);pave(6,24,43,3);pave(6,34,43,3);pave(6,43,43,3)
-pave(5,14,3,32);pave(46,14,3,32);pave(6,45,48,3)
-# Commercial boulevards and connections to the common avenue.
-pave(59,18,43,3);pave(59,31,43,3);pave(59,42,43,3)
-pave(58,18,3,30);pave(99,18,3,28);pave(59,44,43,4)
-# Add buildings with exact, independently verifiable footprints.
-def building(kind,zone,x,y,mat,label=None,door=None):
+# The hand-drawn plan's spine: central north-south avenue, east commercial crossroad.
+pave(64,13,4,76);pave(54,43,60,4)
+pave(37,15,77,3);pave(37,15,3,20)
+pave(49,31,65,2);pave(97,15,3,28)
+# North-west business loop around E2's park.
+pave(4,21,36,2);pave(8,33,32,3);pave(19,11,3,24)
+pave(8,21,3,14);pave(31,21,3,14)
+pave(38,33,3,16);pave(38,46,29,3)
+# Lake park paths join the police crossing and the central avenue.
+pave(4,37,38,2);pave(4,55,38,2);pave(4,37,2,20);pave(39,35,3,22)
+pave(39,48,28,2)
+# Commercial side streets between the Pokemon Center, mall, shop and museum.
+pave(59,17,3,26);pave(78,17,3,26);pave(99,17,3,26)
+pave(49,42,65,2)
+# South-eastern residential perimeter; a park sits between the two house rows.
+pave(70,62,44,3);pave(70,70,44,3);pave(70,87,44,2)
+pave(70,62,3,27);pave(112,62,2,27);pave(76,81,38,1)
+pave(64,63,9,3);pave(64,87,9,2)
+# Keep the known, complete facades and graphics from the previous verified version.
+def building(kind,zone,x,y,mat,label=None,door=None,reference=None):
     h,w=len(mat),len(mat[0]);assert x>=4 and y>=3 and x+w<=W-4 and y+h<=H-3
     for yy in range(y,y+h):
         for xx in range(x,x+w):assert (xx,yy) not in occupied,(kind,occupied.get((xx,yy)));occupied[xx,yy]=kind
@@ -152,80 +162,85 @@ def building(kind,zone,x,y,mat,label=None,door=None):
     if label:
         for i,n in enumerate(bank.label(label)):grid[y+h-3][x+(w-3)//2+i]=c(n,True)
     dx=x+w//2 if door is None else x+door
-    pave(dx-1,y+h,3,2)
-    b={'kind':kind,'zone':zone,'x':x,'y':y,'width':w,'height':h,'approach':[dx,y+h]};manifest['buildings'].append(b)
-    return b
+    pave(dx-1,y+h,3,min(2,H-3-y-h))
+    b={'kind':kind,'zone':zone,'x':x,'y':y,'width':w,'height':h,'approach':[dx,y+h]}
+    if reference:b['reference']=reference
+    manifest['buildings'].append(b);return b
 apt=patch('CeladonCity','celadon_city_frlg',4,4,5,8)
 window_bottom=apt[-1][2]
 condo_door=patch('CeladonCity','celadon_city_frlg',30,11,1,1)[0][0]
 apt[-1][2]=condo_door
-for x in [9,24,39]:building('departamentos','residencial',x,5,apt)
-house=patch('PalletTown','pallet_town_frlg',5,3,5,5)
-for x in [8,19,30,41]:building('casa','residencial',x,18,house,door=1)
-for x in [8,19,30]:building('casa','residencial',x,28,house,door=1)
-# Shops retain the distinctive original architecture.
-mall=patch('CeladonCity','celadon_city_frlg',9,5,9,10)
-building('centro_comercial','comercial',60,6,mall,door=2)
+# E1 and E3 are tall side blocks; E2 is above the park, E5/E4 below it.
+tall=apt[:6]+[apt[5]]*4+apt[6:]
+for ref,x,y,mat in [('E1',5,7,tall),('E2',18,3,apt),('E3',31,7,tall),('E5',11,24,apt),('E4',27,24,apt)]:
+    building('oficina','negocios',x,y,mat,reference=ref)
+# Small business park directly below E2, with the retained first fountain.
+fountain=patch('CeladonCity','celadon_city_frlg',12,18,3,4)
+pave(14,12,15,2);pave(14,22,15,2);pave(14,12,2,12);pave(27,12,2,12)
+fill(16,14,11,8,1)
+stamp(19,16,fountain);flowerbed(17,14,2,1);flowerbed(24,14,2,1);flowerbed(17,20,2,1);flowerbed(24,20,2,1)
+manifest['landmarks'].append({'kind':'fuente_negocios','rect':[19,16,3,4],'approach':[20,20]})
+# Commercial layout follows the drawing: hotel/casino above, Center/mall/shop below.
 tower=[[row[0],row[1],row[2],row[2],row[2],row[3],row[4]] for row in apt]
 tower[-1]=[apt[-1][0],apt[-1][1],window_bottom,condo_door,window_bottom,apt[-1][3],apt[-1][4]]
-building('hotel','comercial',74,6,tower,label='HOTEL')
-museum=patch('PewterCity','pewter_city_frlg',12,0,16,8)
-museum[0]=[bank.transformed(n,'clear_upper') if i<11 else 1 for i,n in enumerate(museum[0])]
-building('museo','comercial',86,6,museum,door=5)
-pave(90,14,3,5);pave(76,14,3,5)
+building('hotel','comercial',54,4,tower,label='HOTEL');pave(56,12,3,5)
 casino=patch('CeladonCity','celadon_city_frlg',31,17,10,5)
-building('casino','comercial',84,25,casino,door=3)
+building('casino','comercial',85,4,casino,door=3);pave(87,9,3,8)
 center=patch('SaffronCity','saffron_city_frlg',22,34,5,5)
 mart=patch('SaffronCity','saffron_city_frlg',38,18,4,4)
-building('centro_pokemon','comercial',61,25,center)
-building('tienda_azul','comercial',71,26,mart)
+building('centro_pokemon','comercial',51,22,center);pave(52,27,3,6)
+mall=patch('CeladonCity','celadon_city_frlg',9,5,9,10)
+building('centro_comercial','comercial',68,19,mall,door=2);pave(69,29,3,4)
+building('tienda_azul','comercial',91,22,mart);pave(92,26,3,7)
+museum=patch('PewterCity','pewter_city_frlg',12,0,16,8)
+museum[0]=[bank.transformed(n,'clear_upper') if i<11 else 1 for i,n in enumerate(museum[0])]
+building('museo','comercial',67,34,museum,door=5)
+# Police station at the central crossing, between the lake and commercial block.
 police=patch('PewterCity','pewter_city_frlg',32,8,5,4)
-building('policia','comercial',93,37,police,label='POLICIA')
-# Offices surround their own plaza: two north, one west and two south.
-for x,y in [(8,55),(33,55),(6,66),(8,77),(33,77)]:building('oficina','negocios',x,y,apt)
-pave(14,65,21,10);pave(18,62,4,24);pave(28,62,4,24);pave(5,86,44,3)
-pave(12,63,26,3);pave(36,63,16,3);pave(11,75,28,2);pave(8,74,8,3)
-fountain=patch('CeladonCity','celadon_city_frlg',12,18,3,4)
-fill(22,66,7,8,1)
-flowerbed(22,66,2,1);flowerbed(27,66,2,1);flowerbed(22,73,2,1);flowerbed(27,73,2,1)
-stamp(24,68,fountain);manifest['landmarks'].append({'kind':'fuente_negocios','rect':[24,68,3,4],'approach':[25,72]})
-# Central park with a formal flower ring, fountain and intersecting stone paths.
-pave(49,53,31,3);pave(49,73,31,3);pave(77,53,3,23)
-pave(55,62,24,3);pave(62,55,3,20)
-fill(60,57,7,8,1)
-pave(59,56,9,1);pave(59,65,9,1);pave(59,56,1,10);pave(67,56,1,10)
-stamp(62,59,fountain);manifest['landmarks'].append({'kind':'fuente_central','rect':[62,59,3,4],'approach':[63,65]})
-flowerbed(58,57,3,2);flowerbed(67,57,3,2);flowerbed(58,67,3,2);flowerbed(67,67,3,2)
-for x,y in [(57,54),(70,54),(57,70),(70,70)]:tree(x,y)
-# Quiet residential park and lake, separate from the central civic park.
-pave(9,39,24,2);flowerbed(11,38,5,1);flowerbed(23,41,5,1)
-for x,y in [(8,37),(28,37)]:tree(x,y)
-# Lake bank is copied from a complete original lake; stretch its straight sides.
-# No improvised metatile mirroring: primary corner/side pieces are taken in order.
-# Use the known closed rectangular Celadon pool, including its original lower bank.
+police=police[:3]+[police[2]]*3+police[3:]
+building('policia','centro',46,33,police,label='POLICIA');pave(47,40,3,9)
+# Western lake surrounded by a park. Closed banks retain the previous validated art.
 pool=patch('CeladonCity','celadon_city_frlg',24,21,6,3)
-lake_w,lake_h=11,7
+lake_w,lake_h=27,12
 expanded=[]
 for y in range(lake_h):
     row=pool[0 if y==0 or y==lake_h-1 else 1]
     if y==lake_h-1:row=[bank.transformed(n,'flip_y') for n in row]
     expanded.append([row[0] if x==0 else row[-1] if x==lake_w-1 else row[1] for x in range(lake_w)])
-stamp(36,28,expanded);manifest['landmarks'].append({'kind':'lago_residencial','rect':[36,28,lake_w,lake_h],'approach':[40,36]})
-# Southern gym: grove and a continuous promenade up to the north of the map.
-pave(48,77,12,3);pave(48,77,3,16);pave(58,77,3,16);pave(48,92,13,1)
+stamp(7,40,expanded)
+manifest['landmarks'].append({'kind':'lago_oeste','rect':[7,40,lake_w,lake_h],'approach':[20,53]})
+flowerbed(8,58,8,1);flowerbed(25,58,8,1)
+for x,y in [(7,36),(31,36),(34,51)]:tree(x,y)
+# Large eastern park below the museum and above the residential quarter.
+pave(73,49,41,2);pave(73,60,41,2);pave(73,49,2,13);pave(112,49,2,13)
+pave(88,50,3,12);pave(74,55,39,2)
+fill(86,52,7,7,1);stamp(88,53,fountain)
+manifest['landmarks'].append({'kind':'fuente_parque_este','rect':[88,53,3,4],'approach':[89,58]})
+flowerbed(81,52,3,2);flowerbed(95,52,3,2);flowerbed(81,58,3,1);flowerbed(95,58,3,1)
+for x,y in [(76,51),(105,51),(76,57),(105,57)]:tree(x,y)
+pave(66,49,9,2)
+# Residential area: four houses above the park, three below, apartments on its sides.
+house=patch('PalletTown','pallet_town_frlg',5,3,5,5)
+for x in [73,83,93,103]:building('casa','residencial',x,65,house,door=1)
+for x in [78,86,94]:building('casa','residencial',x,82,house,door=1)
+for x in [71,100,108]:building('departamentos','residencial',x,74,apt)
+pave(99,82,15,2)
+# The third apartment is placed beside the eastern block; seven houses remain unchanged.
+pave(77,73,22,1);pave(77,80,22,1);pave(77,73,1,8);pave(98,73,1,8)
+flowerbed(80,75,4,1);flowerbed(91,78,4,1)
+for x,y in [(80,76),(93,74)]:tree(x,y)
+# South-west gym in a wooded enclosure with the L-shaped exit path in Sam's plan.
+for x in range(4,58,2):tree(x,62)
+for y in range(65,86,3):tree(4,y);tree(6,y)
+for x in range(8,40,2):tree(x,83)
+for y in range(65,80,3):tree(54,y);tree(56,y)
 gym=patch('SaffronCity','saffron_city_frlg',43,8,7,5)
-building('gimnasio','sur',51,85,gym)
-pave(53,90,3,3)
-for x in [44,46,62,64,66]:
-    for y in [78,81,84,87,90]:tree(x,y)
-# Restore the ceremonial approach through the tree line.
-pave(52,77,4,8)
-# Southeastern woodland balances the built-up blocks without adding empty pavement.
-for y in range(52,91,3):
-    for x in range(83,101,2):tree(x,y)
-# Flower borders and planted junctions. No flowers are stamped onto the paving.
-for x,y in [(8,4),(23,4),(38,4),(70,22),(77,22),(97,22),(17,53),(37,53),(57,40),(79,38),(60,90)]:
-    if (x,y) not in occupied and grid[y][x]&1023==1:grid[y][x]=c(4,True)
+building('gimnasio','suroeste',13,72,gym)
+pave(15,77,3,3);pave(15,78,29,3);pave(41,78,3,7);pave(41,83,26,2)
+flowerbed(12,67,5,1);flowerbed(27,69,6,1)
+# Plant the unbuilt margins without blocking or erasing any path.
+for x,y in [(43,5),(45,17),(105,5),(108,23),(9,60),(47,60),(69,57),(112,33),(5,28)]:
+    if grid[y][x]&1023==1 and all((xx,yy) not in occupied and grid[yy][xx]&1023==1 for yy in range(y,y+3) for xx in range(x,x+2)):tree(x,y)
 # Validate traversability and exact requested counts before writing anything.
 counts=Counter(b['kind'] for b in manifest['buildings'])
 assert counts==Counter({'departamentos':3,'casa':7,'oficina':5,'hotel':1,'centro_comercial':1,'museo':1,'casino':1,'centro_pokemon':1,'tienda_azul':1,'policia':1,'gimnasio':1}),counts
