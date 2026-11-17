@@ -1,126 +1,378 @@
 {
   "prototype": true,
-  "name": "Ciudad de prueba (nombre pendiente)",
-  "width": 72,
-  "height": 64,
+  "version": "0.2",
+  "name": "Ciudad de prueba; nombre pendiente",
+  "width": 106,
+  "height": 96,
   "spawn": [
-    27,
-    34
+    54,
+    48
   ],
   "buildings": [
     {
-      "kind": "edificio",
+      "kind": "departamentos",
+      "zone": "residencial",
+      "x": 9,
+      "y": 5,
+      "width": 5,
+      "height": 8,
+      "approach": [
+        11,
+        13
+      ]
+    },
+    {
+      "kind": "departamentos",
+      "zone": "residencial",
+      "x": 24,
+      "y": 5,
+      "width": 5,
+      "height": 8,
+      "approach": [
+        26,
+        13
+      ]
+    },
+    {
+      "kind": "departamentos",
+      "zone": "residencial",
+      "x": 39,
+      "y": 5,
+      "width": 5,
+      "height": 8,
+      "approach": [
+        41,
+        13
+      ]
+    },
+    {
+      "kind": "casa",
+      "zone": "residencial",
       "x": 8,
+      "y": 18,
+      "width": 5,
+      "height": 5,
+      "approach": [
+        9,
+        23
+      ]
+    },
+    {
+      "kind": "casa",
+      "zone": "residencial",
+      "x": 19,
+      "y": 18,
+      "width": 5,
+      "height": 5,
+      "approach": [
+        20,
+        23
+      ]
+    },
+    {
+      "kind": "casa",
+      "zone": "residencial",
+      "x": 30,
+      "y": 18,
+      "width": 5,
+      "height": 5,
+      "approach": [
+        31,
+        23
+      ]
+    },
+    {
+      "kind": "casa",
+      "zone": "residencial",
+      "x": 41,
+      "y": 18,
+      "width": 5,
+      "height": 5,
+      "approach": [
+        42,
+        23
+      ]
+    },
+    {
+      "kind": "casa",
+      "zone": "residencial",
+      "x": 8,
+      "y": 28,
+      "width": 5,
+      "height": 5,
+      "approach": [
+        9,
+        33
+      ]
+    },
+    {
+      "kind": "casa",
+      "zone": "residencial",
+      "x": 19,
+      "y": 28,
+      "width": 5,
+      "height": 5,
+      "approach": [
+        20,
+        33
+      ]
+    },
+    {
+      "kind": "casa",
+      "zone": "residencial",
+      "x": 30,
+      "y": 28,
+      "width": 5,
+      "height": 5,
+      "approach": [
+        31,
+        33
+      ]
+    },
+    {
+      "kind": "centro_comercial",
+      "zone": "comercial",
+      "x": 60,
       "y": 6,
       "width": 9,
-      "height": 15,
-      "label": "OF.1",
+      "height": 10,
       "approach": [
-        12,
-        21
-      ]
-    },
-    {
-      "kind": "edificio",
-      "x": 31,
-      "y": 6,
-      "width": 9,
-      "height": 15,
-      "label": "OF.2",
-      "approach": [
-        35,
-        21
-      ]
-    },
-    {
-      "kind": "edificio",
-      "x": 54,
-      "y": 6,
-      "width": 9,
-      "height": 15,
-      "label": "OF.3",
-      "approach": [
-        58,
-        21
-      ]
-    },
-    {
-      "kind": "departamentos",
-      "x": 7,
-      "y": 49,
-      "width": 10,
-      "height": 6,
-      "label": "APT.A",
-      "approach": [
-        12,
-        55
-      ]
-    },
-    {
-      "kind": "departamentos",
-      "x": 28,
-      "y": 49,
-      "width": 10,
-      "height": 6,
-      "label": "APT.B",
-      "approach": [
-        33,
-        55
+        62,
+        16
       ]
     },
     {
       "kind": "hotel",
-      "x": 53,
-      "y": 46,
-      "width": 9,
-      "height": 11,
-      "label": "HOTEL",
+      "zone": "comercial",
+      "x": 74,
+      "y": 6,
+      "width": 7,
+      "height": 8,
       "approach": [
-        57,
-        57
+        77,
+        14
       ]
     },
     {
-      "kind": "gimnasio",
-      "x": 54,
-      "y": 27,
-      "width": 7,
-      "height": 5,
-      "label": null,
+      "kind": "museo",
+      "zone": "comercial",
+      "x": 86,
+      "y": 6,
+      "width": 16,
+      "height": 8,
       "approach": [
-        57,
-        32
+        91,
+        14
+      ]
+    },
+    {
+      "kind": "casino",
+      "zone": "comercial",
+      "x": 84,
+      "y": 25,
+      "width": 10,
+      "height": 5,
+      "approach": [
+        87,
+        30
       ]
     },
     {
       "kind": "centro_pokemon",
-      "x": 50,
-      "y": 36,
+      "zone": "comercial",
+      "x": 61,
+      "y": 25,
       "width": 5,
       "height": 5,
-      "label": null,
       "approach": [
-        52,
-        41
+        63,
+        30
       ]
     },
     {
       "kind": "tienda_azul",
-      "x": 61,
-      "y": 37,
+      "zone": "comercial",
+      "x": 71,
+      "y": 26,
       "width": 4,
       "height": 4,
-      "label": null,
       "approach": [
-        63,
+        73,
+        30
+      ]
+    },
+    {
+      "kind": "policia",
+      "zone": "comercial",
+      "x": 93,
+      "y": 37,
+      "width": 5,
+      "height": 4,
+      "approach": [
+        95,
         41
+      ]
+    },
+    {
+      "kind": "oficina",
+      "zone": "negocios",
+      "x": 8,
+      "y": 55,
+      "width": 5,
+      "height": 8,
+      "approach": [
+        10,
+        63
+      ]
+    },
+    {
+      "kind": "oficina",
+      "zone": "negocios",
+      "x": 33,
+      "y": 55,
+      "width": 5,
+      "height": 8,
+      "approach": [
+        35,
+        63
+      ]
+    },
+    {
+      "kind": "oficina",
+      "zone": "negocios",
+      "x": 6,
+      "y": 66,
+      "width": 5,
+      "height": 8,
+      "approach": [
+        8,
+        74
+      ]
+    },
+    {
+      "kind": "oficina",
+      "zone": "negocios",
+      "x": 8,
+      "y": 77,
+      "width": 5,
+      "height": 8,
+      "approach": [
+        10,
+        85
+      ]
+    },
+    {
+      "kind": "oficina",
+      "zone": "negocios",
+      "x": 33,
+      "y": 77,
+      "width": 5,
+      "height": 8,
+      "approach": [
+        35,
+        85
+      ]
+    },
+    {
+      "kind": "gimnasio",
+      "zone": "sur",
+      "x": 51,
+      "y": 85,
+      "width": 7,
+      "height": 5,
+      "approach": [
+        54,
+        90
       ]
     }
   ],
-  "park": [
-    7,
-    27,
-    39,
-    15
-  ]
+  "landmarks": [
+    {
+      "kind": "fuente_negocios",
+      "rect": [
+        24,
+        68,
+        3,
+        4
+      ],
+      "approach": [
+        25,
+        72
+      ]
+    },
+    {
+      "kind": "fuente_central",
+      "rect": [
+        62,
+        59,
+        3,
+        4
+      ],
+      "approach": [
+        63,
+        65
+      ]
+    },
+    {
+      "kind": "lago_residencial",
+      "rect": [
+        36,
+        28,
+        11,
+        7
+      ],
+      "approach": [
+        40,
+        36
+      ]
+    }
+  ],
+  "districts": {
+    "residencial": [
+      5,
+      5,
+      44,
+      40
+    ],
+    "comercial": [
+      59,
+      5,
+      43,
+      39
+    ],
+    "negocios": [
+      5,
+      54,
+      40,
+      31
+    ],
+    "parque_central": [
+      48,
+      53,
+      31,
+      22
+    ],
+    "gimnasio_sur": [
+      44,
+      78,
+      32,
+      15
+    ]
+  },
+  "promenade": [
+    52,
+    3,
+    4,
+    90
+  ],
+  "paving_metatiles": [
+    449
+  ],
+  "connected_paving_tiles": 2987,
+  "resources": {
+    "secondary_tiles": 248,
+    "secondary_metatiles": 230,
+    "secondary_palettes": 5
+  },
+  "walkable_connected_tiles": 6884
 }

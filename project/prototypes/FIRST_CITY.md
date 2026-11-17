@@ -1,40 +1,54 @@
-# Primera ciudad — prototipo de recorrido 0.1
+# Primera ciudad — barrios y recorrido 0.2
 
-Encargo de Sam, 17 de noviembre de 2026. Este mapa no fija nombre de región, nombre de ciudad, iniciales ni historia. Leaf es la protagonista temporal solicitada para la prueba gráfica.
+Revisión solicitada por Sam el 17 de noviembre de 2026, tras probar la versión 0.1. El mapa conserva el nombre provisional técnico `PrototypeCity_Frlg`. No fija nombres de ciudad o región ni añade historia. Leaf continúa como personaje temporal; los edificios no tienen interacciones ni interiores.
 
-## Contenido
+## Distribución aprobada por el encargo
 
-Mapa nuevo `PrototypeCity_Frlg`, 72 × 64 casillas. Tiene tres edificios altos de oficinas (OF.1–OF.3), dos complejos residenciales (APT.A y APT.B), un hotel rotulado HOTEL, parque con senderos, estanque, bancos, árboles y flores, gimnasio, Centro Pokémon y tienda de techo azul. Se reutiliza arquitectura de FRLG; el hotel se diferencia por su altura y letrero. Las calles conectan las nueve fachadas.
+Mapa de 106 × 96 casillas, dividido en barrios con calles de losa sobre césped, manzanas alineadas y zonas verdes, siguiendo la composición clásica de Rojo Fuego.
 
-No tiene NPC, encuentros salvajes, conexiones con otros mapas, interiores ni eventos interactivos. Las puertas y edificios permanecen bloqueados. No hay Pokémon en el equipo inicial. La partida nueva entra directamente al mapa con Leaf; B permite correr.
+| Sector | Contenido |
+| --- | --- |
+| Noroeste residencial | Tres edificios de departamentos, siete casas, lago y parque de barrio |
+| Noreste comercial | Hotel, centro comercial, museo, casino, Centro Pokémon, tienda azul y comisaría |
+| Suroeste de negocios | Cinco edificios con una fuente en la plaza que rodean |
+| Centro | Parque con segunda fuente, flores y senderos |
+| Sur | Gimnasio rodeado de árboles, con un paseo de losa conectado al norte |
 
-## Implementación
+Total: 23 edificios y tres hitos (dos fuentes y un lago). Los caminos de losa conectan los accesos de todos los edificios. Hay césped entre las calles y las construcciones; el suelo no se rellena completamente con pavimento.
 
-- `include/config/prototype.h`: selector temporal `CITY_PROTOTYPE` y coordenadas de inicio.
-- `src/new_game.c`: destino de la prueba, género femenino, nombre LEAF y zapatillas.
-- `src/oak_speech.c`: omite la introducción original al elegir New Game en este prototipo.
-- `data/maps/PrototypeCity_Frlg/`: mapa nuevo sin eventos.
-- `data/layouts/PrototypeCity_Frlg/`: bloques y borde.
-- `data/tilesets/secondary/prototype_city_frlg/`: recursos derivados de Saffron y rótulos simples. Usa las paletas de Saffron.
-- `project/scripts/generate_first_city.py`: generador reproducible del mapa, necesita Pillow para regenerar los gráficos; los archivos generados están incluidos y compilar no requiere ejecutar este script.
-- Se mantienen los mapas originales. El grupo nuevo se añade al final para conservar los identificadores previos.
+## Correcciones respecto a 0.1
 
-## Cómo jugar
+- Coníferas completas: filas 14/15, 30/31 y 38/39 de FRLG. Se elimina la combinación incorrecta que dejaba dos copas superpuestas.
+- Se eliminan los falsos bancos hechos con fragmentos de fachada.
+- Casas completas con tejado, fachada y puerta; departamentos y oficinas con entrada visible.
+- El lago tiene un borde cerrado y las flores se colocan en césped, sin cortar los senderos.
+- Se combinan únicamente las piezas utilizadas de Celadon, Pallet, Pewter y Saffron. Se remapean índices de tiles y paletas, conservando las capas y volteos de cada metatile.
+- Museo y viviendas adaptan algunos colores a paletas compartidas para respetar el presupuesto de paletas de GBA. No se sustituyen los recursos originales.
+- El tileset propio usa sus propias paletas; ya no apunta a las de Saffron pese a contener piezas de otras ciudades.
 
-Descomprime el paquete de prueba y abre `Pokeproyecto_Ciudad_0.1.gba` con un emulador de GBA. En mGBA: File > Load ROM (Archivo > Cargar ROM). Pulsa Start/Enter para pasar la presentación y elige NEW GAME. Se inicia directamente con Leaf en la zona de prueba.
+## Implementación y regeneración
 
-Usa la cruceta o flechas para caminar; mantén B para correr. Las teclas concretas de A/B dependen de la configuración de tu emulador y se pueden revisar en sus ajustes de controles. START abre el menú base del juego. Esta versión no tiene servicios interactivos.
+`project/scripts/generate_first_city.py` genera el plano, los bloques y los recursos gráficos de `data/tilesets/secondary/prototype_city_frlg/`. Requiere Pillow solo para regenerar; los archivos generados están incluidos y compilar no necesita ejecutar el generador.
 
-Este archivo es una ROM de Game Boy Advance. Godot no la ejecuta como un proyecto propio. Para esta prueba usa el emulador de GBA. No hace falta compilar ni instalar WSL para jugar el archivo entregado.
+El generador comprueba los 23 edificios exactos, que no se solapen, las colisiones de las fachadas, los límites gráficos de GBA, el perímetro cerrado y que todos los accesos tengan una conexión continua de losa desde el punto de inicio. `first_city.json` describe el plano y sus recursos.
 
-Empieza con una partida nueva y un archivo de guardado propio de esta demo, no con una partida o estado rápido del juego original. Los estados rápidos dependen de la ROM y del emulador.
+Se amplía `MAX_MAP_DATA_SIZE` de 10,240 a 14,336 entradas para que el mapa de 106×96 y su borde de cámara (121×110) quepan en el búfer. El enlace final comprueba que la memoria EWRAM e IWRAM sigan dentro de los límites. No se aumenta el tamaño de ROM más allá de los 32 MiB del formato existente.
 
-## Verificación de la entrega
+## Jugar
 
-Compiló con `make firered -j4` y se ejecutó en libmgba 0.10.5. La secuencia de 8,689 cuadros confirmó inicio en (27, 34), género femenino, recorrido a las nueve fachadas, bloqueo al intentar entrar y ausencia de eventos al pulsar A. Se comprobó además por conectividad que los accesos están unidos y el perímetro está cerrado. El hash y los resultados están en `first_city_verification.json`.
+1. Descomprime `Pokeproyecto_Ciudad_0.2.zip`.
+2. Abre `Pokeproyecto_Ciudad_0.2.gba` con tu emulador de GBA.
+3. Pasa la presentación y elige `NEW GAME`. Leaf aparece en el cruce central.
+4. Usa la cruceta para caminar y B para correr, según las teclas configuradas en tu emulador.
 
-No se probaron combates, interiores ni guardado de partida en esta entrega. No hay ninguna versión de Godot ni pruebas en hardware GBA físico.
+Empieza una partida nueva. No cargues un estado rápido ni un guardado de la versión 0.1: cambiaron el tamaño del mapa, el plano y las coordenadas de inicio. No hace falta compilar ni usar Godot para jugar el archivo entregado.
 
-## Créditos de recursos
+No hay NPC, encuentros, conexiones a la región original, servicios ni interiores. Las puertas son decorativas y permanecen bloqueadas. No hay Pokémon en el equipo inicial.
 
-Motor: RHH pokeemerald-expansion 1.17.2; descompilaciones de pret y colaboradores de `CREDITS.md`. Arquitectura y personaje Leaf procedentes de los recursos FRLG incluidos en la base. Composición del mapa y rótulos preparados para el proyecto de Sam.
+## Verificación
+
+Los resultados y el SHA-256 de la ROM de esta entrega se registran en `first_city_verification.json`. La prueba en libmgba recorre los 23 accesos por losa, intenta entrar y pulsa A frente a cada fachada; comprueba además las dos fuentes y el lago. Las capturas se revisan visualmente para comprobar árboles, casas, museo, gimnasio y parque. No se atribuyen pruebas de combate o de guardado a esta demo de recorrido.
+
+## Créditos
+
+Motor RHH pokeemerald-expansion 1.17.2; descompilaciones de pret y colaboradores de `CREDITS.md`. Recursos gráficos FRLG incluidos en la base, recombinados para el mapa de Sam. No se utilizaron imágenes de las capturas del usuario como texturas del juego.

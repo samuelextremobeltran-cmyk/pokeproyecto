@@ -1,6 +1,6 @@
 # Proyecto Pokémon original
 
-Leer `project/README.md`, `project/creative/MASTER.md` y `project/technical/STATUS.md` antes de trabajar.
+Leer `project/README.md`, `project/creative/MASTER.md`, `project/technical/STATUS.md` y `project/prototypes/FIRST_CITY.md` antes de trabajar.
 
 - Sam conserva las decisiones creativas. No convertir propuestas en canon ni reemplazar ideas sin consultarle.
 - Protagonista mujer de 27 años; hermana rival de 16; amiga de infancia campeona; Equipo Nunca Jamás formado por niños que transforma adultos en niños con un legendario.

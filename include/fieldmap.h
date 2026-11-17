@@ -12,7 +12,7 @@
 #define NUM_METATILES_TOTAL 1024
 #define NUM_TILES_TOTAL 1024
 #define NUM_PALS_TOTAL 13
-#define MAX_MAP_DATA_SIZE 10240
+#define MAX_MAP_DATA_SIZE 14336 // Supports the 106x96 city plus camera border (121x110).
 
 #define NUM_TILES_PER_METATILE 8
 
