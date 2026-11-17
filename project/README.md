@@ -40,4 +40,4 @@ Se conserva `CREDITS.md` del proyecto original. `pret/pokefirered` es una refere
 5. Campaña completa, legendario, hermanas y campeona.
 6. Equilibrio, correcciones y parche de distribución.
 
-Ningún mapa original ni personaje definitivo está implementado todavía.
+Primer mapa original de prueba: `PrototypeCity_Frlg`. Incluye la zona urbana solicitada, sin interacciones, y Leaf temporalmente como personaje jugable. Véase `prototypes/FIRST_CITY.md`. No hay personajes originales definitivos ni historia implementada todavía.

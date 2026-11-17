@@ -1,5 +1,7 @@
 # Fase 0 — informe de verificación
 
+Este informe conserva la prueba técnica inicial. Para la primera ciudad jugable añadida el 17 de noviembre de 2026, consultar `../prototypes/FIRST_CITY.md` y `../prototypes/first_city_verification.json`.
+
 Fecha local de Sam: 16 de noviembre de 2026. Sesión de ejecución Linux remoto; no es la PC Windows del usuario.
 
 ## Resultado

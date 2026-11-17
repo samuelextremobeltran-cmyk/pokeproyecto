@@ -1,0 +1,126 @@
+{
+  "prototype": true,
+  "name": "Ciudad de prueba (nombre pendiente)",
+  "width": 72,
+  "height": 64,
+  "spawn": [
+    27,
+    34
+  ],
+  "buildings": [
+    {
+      "kind": "edificio",
+      "x": 8,
+      "y": 6,
+      "width": 9,
+      "height": 15,
+      "label": "OF.1",
+      "approach": [
+        12,
+        21
+      ]
+    },
+    {
+      "kind": "edificio",
+      "x": 31,
+      "y": 6,
+      "width": 9,
+      "height": 15,
+      "label": "OF.2",
+      "approach": [
+        35,
+        21
+      ]
+    },
+    {
+      "kind": "edificio",
+      "x": 54,
+      "y": 6,
+      "width": 9,
+      "height": 15,
+      "label": "OF.3",
+      "approach": [
+        58,
+        21
+      ]
+    },
+    {
+      "kind": "departamentos",
+      "x": 7,
+      "y": 49,
+      "width": 10,
+      "height": 6,
+      "label": "APT.A",
+      "approach": [
+        12,
+        55
+      ]
+    },
+    {
+      "kind": "departamentos",
+      "x": 28,
+      "y": 49,
+      "width": 10,
+      "height": 6,
+      "label": "APT.B",
+      "approach": [
+        33,
+        55
+      ]
+    },
+    {
+      "kind": "hotel",
+      "x": 53,
+      "y": 46,
+      "width": 9,
+      "height": 11,
+      "label": "HOTEL",
+      "approach": [
+        57,
+        57
+      ]
+    },
+    {
+      "kind": "gimnasio",
+      "x": 54,
+      "y": 27,
+      "width": 7,
+      "height": 5,
+      "label": null,
+      "approach": [
+        57,
+        32
+      ]
+    },
+    {
+      "kind": "centro_pokemon",
+      "x": 50,
+      "y": 36,
+      "width": 5,
+      "height": 5,
+      "label": null,
+      "approach": [
+        52,
+        41
+      ]
+    },
+    {
+      "kind": "tienda_azul",
+      "x": 61,
+      "y": 37,
+      "width": 4,
+      "height": 4,
+      "label": null,
+      "approach": [
+        63,
+        41
+      ]
+    }
+  ],
+  "park": [
+    7,
+    27,
+    39,
+    15
+  ]
+}

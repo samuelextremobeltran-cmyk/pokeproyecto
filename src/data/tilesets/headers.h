@@ -979,6 +979,17 @@ const struct Tileset gTileset_SaffronCity =
     .callback = NULL,
 };
 
+const struct Tileset gTileset_PrototypeCity =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_PrototypeCity,
+    .palettes = gTilesetPalettes_SaffronCity,
+    .metatiles = gMetatiles_PrototypeCity,
+    .metatileAttributes = gMetatileAttributes_PrototypeCity,
+    .callback = NULL,
+};
+
 const struct Tileset gTileset_Mart =
 {
     .isCompressed = TRUE,

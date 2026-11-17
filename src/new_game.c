@@ -52,6 +52,7 @@
 #include "constants/items.h"
 #include "difficulty.h"
 #include "follower_npc.h"
+#include "config/prototype.h"
 
 extern const u8 EventScript_ResetAllMapFlags[];
 extern const u8 EventScript_ResetAllMapFlagsFrlg[];
@@ -135,7 +136,9 @@ static void ClearFrontierRecord(void)
 
 static void WarpToTruck(void)
 {
-    if (IS_FRLG)
+    if (IS_FRLG && CITY_PROTOTYPE)
+        SetWarpDestination(MAP_GROUP(MAP_PROTOTYPE_CITY), MAP_NUM(MAP_PROTOTYPE_CITY), WARP_ID_NONE, CITY_PROTOTYPE_START_X, CITY_PROTOTYPE_START_Y);
+    else if (IS_FRLG)
         SetWarpDestination(MAP_GROUP(MAP_PALLET_TOWN_PLAYERS_HOUSE_2F), MAP_NUM(MAP_PALLET_TOWN_PLAYERS_HOUSE_2F), WARP_ID_NONE, 6, 6);
     else
         SetWarpDestination(MAP_GROUP(MAP_INSIDE_OF_TRUCK), MAP_NUM(MAP_INSIDE_OF_TRUCK), WARP_ID_NONE, -1, -1);
@@ -167,7 +170,14 @@ void NewGameInitData(void)
         RtcReset();
 
 #if IS_FRLG
-    StringCopy(rivalName, gSaveBlock1Ptr->rivalName);
+    if (CITY_PROTOTYPE)
+    {
+        // The skipped naming scene normally terminates this string with EOS.
+        static const u8 sPrototypeRivalName[] = _("RIVAL");
+        StringCopy(rivalName, sPrototypeRivalName);
+    }
+    else
+        StringCopy(rivalName, gSaveBlock1Ptr->rivalName);
 #endif
     gDifferentSaveFile = TRUE;
     gSaveBlock2Ptr->encryptionKey = 0;
@@ -234,6 +244,13 @@ void NewGameInitData(void)
     ResetItemFlags();
     ResetDexNav();
     ClearFollowerNPCData();
+    if (IS_FRLG && CITY_PROTOTYPE)
+    {
+        static const u8 sPrototypePlayerName[] = _("LEAF");
+        gSaveBlock2Ptr->playerGender = FEMALE;
+        StringCopy_PlayerName(gSaveBlock2Ptr->playerName, sPrototypePlayerName);
+        FlagSet(FLAG_SYS_B_DASH);
+    }
 }
 
 static void ResetMiniGamesRecords(void)

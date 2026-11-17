@@ -1892,6 +1892,7 @@ const u16 gTilesetPalettes_IndigoPlateau[][16] =
 };
 
 const u32 gTilesetTiles_SaffronCity[] = INCGFX_U32("data/tilesets/secondary/saffron_city_frlg/tiles.png", ".4bpp.fastSmol");
+const u32 gTilesetTiles_PrototypeCity[] = INCGFX_U32("data/tilesets/secondary/prototype_city_frlg/tiles.png", ".4bpp.fastSmol");
 
 const u16 gTilesetPalettes_SaffronCity[][16] =
 {

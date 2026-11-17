@@ -1,0 +1,19 @@
+{
+  "date": "2026-11-17",
+  "emulator": "mGBA 0.10.5 (headless libmgba)",
+  "frames": 8689,
+  "spawn": [
+    27,
+    34
+  ],
+  "leaf_gender": 1,
+  "map_group": 75,
+  "map_num": 0,
+  "building_approaches_verified": 9,
+  "blocked_facades_and_A_no_warp": 9,
+  "connected_walkable_tiles": 2772,
+  "boundary_enclosed": true,
+  "events_and_warps": 0,
+  "rom_sha256": "2123c47d6fe9fe99c673f33e2e95783acc3bfa63a3fc7bcf1727b6f579e43f63",
+  "rom_bytes": 33554432
+}

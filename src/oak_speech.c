@@ -1,4 +1,5 @@
 #include "global.h"
+#include "config/prototype.h"
 #include "bg.h"
 #include "data.h"
 #include "decompress.h"
@@ -690,6 +691,12 @@ static void CB2_NewGameScene(void)
 
 void StartNewGameSceneFrlg(void)
 {
+    if (CITY_PROTOTYPE)
+    {
+        ResetTasks();
+        SetMainCallback2(CB2_NewGame);
+        return;
+    }
     gPlttBufferUnfaded[0] = RGB_BLACK;
     gPlttBufferFaded[0]   = RGB_BLACK;
     CreateTask(Task_NewGameScene, 0);

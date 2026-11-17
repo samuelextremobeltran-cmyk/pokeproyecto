@@ -130,6 +130,7 @@ gStdScripts::
 gStdScripts_End::
 
 
+	.include "data/maps/PrototypeCity_Frlg/scripts.inc"
 	.include "data/maps/PetalburgCity/scripts.inc"
 	.include "data/maps/SlateportCity/scripts.inc"
 	.include "data/maps/MauvilleCity/scripts.inc"
